@@ -1,0 +1,63 @@
+\documentclass[oribibl]{llncs}
+
+\usepackage{graphicx}
+\usepackage{caption}
+
+\begin{document}
+
+\title{The implementation of nor-adrenaline in the NeuCogAr cognitive architecture}
+
+\section{Experiment}\label{the-details}
+
+
+Our noradrenaline concentration dynamics model is based on Izhikevich model for dopamine [ССЫЛКА]. The state of each synapse is described by two variables: synaptic weight \textit{w} and synaptic tag \textit{c}, also called eligibility trace. The eligibility trace is either some enzyme activation, or another relatively slow process that happens in the synapse, if pre-synaptic and post-synaptic neurons fire by the STDP rule. The eligibility trace can modify the synaptic weigth, but only in the presence of extracellular neurotransmitter (noradrenaline), and only during the window of a few seconds. During that time window, the eligibility trace decays to zero.\\*
+
+
+Extending Izhikevich equations for dopamine, the following governing equations and features are used in the model of a neural network with noradrenaline: \\*
+
+1) Consider spiking network of quadratic leaky integrate-and-fire neurons. Neuron ratio: 80\% excitatory neurons and 20\% inhibitory. Membrane potential \textit{v} of the neuron depends on abstract membrane recovery variable \textit{u}: \\*
+\textit{$\dot{v}$ = k (v - $v_{rest}$)(v - $v_{thresh}$) - u + I} (1) \\*
+\textit{u =  ab(v - $v_{rest}$) - u} (2) \\*
+\textit{if (v >= 30 [mV] : \{v = - 65 [mV], u = u + 2 [mV]\}} (3) \\*
+
+Membrane voltage threshold \textit{$v_{thresh}$}, resting potential \textit{$v_{rest}$}, and voltage clamp are constant. Synaptic current input \textit{I} has an exponential shape. Spike happens when the membrane potential is higher than 30 mV, and then the variables recover: \textit{v} decreases to -65 mV, \textit{u} increases by 2 mV. We set \textit{a} to 0.02, \textit{b} to 0.2, \textit{k} to 1. \\*
+
+2) Additive STDP is enabled in excitatory to excitatory synapses. The change of eligibility trace \textit{c} is described as follows: \\*
+\textit{$\dot{c}$˙= − c/$\tau_c$ + $A^+$  e ($t_{pre}$ - $t_{post}$) / $\tau^+$$\delta$(t - $t_{post}$ )  $A^-$ e  ($t_{pre}$ - $t_{post}$) / $\tau^-$$\delta$(t - $t_{pre}$ )}	(4) \\*
+
+where \textit{$t_{pre}$} and \textit{$t_{post}$} are the times of a pre- or post-synaptic spike, \textit{$A^+$} and \textit{$A^-$} are the amplitudes of the weight change, \textit{$\tau_+$} and \textit{$\tau_-$} are rate constants, \textit{$\delta$(t)} is  the Dirac delta function that step-increases the variable \textit{c}. Eligibility trace decays at the rate of \textit{$τ_c$}. \\*
+
+
+3) The concentration of noradrenaline decreases exponentially with time (natural fade rate equals $τ_n$), and increases depending on salient, novel events: \\*
+\textit{$\dot{n}$ = -n/$\tau_n$ + $p_{nov}$ (n$\delta$(t - $t_n$)$p_{rew}$ + n$\delta$(t - $t_n$)$p_{pun}$)} (5) \\*
+
+where $p_{punish}$ is a punishment (stressor) event, $p_{rew}$ is a reward event, $p_{nov}$ is the probability of the event being novel and unexpected (salient). The noradrenaline concentration cannot go below zero; it increases with the stressor, if $p_{nov}$ is bigger than zero (a sudden stress); and it increases with the reward, if $p_{rew}$ is bigger than zero (a surprise reward). \\*
+
+4) The excitatory synaptic weight \textit{w} is proportional to relative concentration of noradrenaline \textit{n} (to its baseline level \textit{$b_n$}), multiplied by eligibility trace \textit{c}: \\*
+\textit{$\dot{w}$ = c(n - $b_n$)} (6) \\*
+
+The model was tested in MATLAB with the following features:
+Network of 1000 leaky neurons with STDP; 
+100 synapses per neuron;
+Maximal synaptic strength = 5;
+Conduction delay = 1 [ms];
+Membrane ground potential = -65 [mV];
+Coincidence interval for pre- and post-synaptic neurons = 20 [ms]. \\*
+
+
+\begin{figure}
+  \caption{ Transient evolution of eligibility trace (cyan) and concentration of NA (red), 5-HT (blue), DA (green), being exposed to reward (arrow) and punishment (red circle) events. Each of the events has high, medium, or low level of saliency (grey circle).}
+  \centering
+  \includegraphics[scale=0.3]{images/matlab_NA_with_NOV} 
+\end{figure}
+
+Simulation run, lasting 500 ms, demonstrated \textit{(Fig. 1)} the following. Noradrenaline concentration was not affected whatsoever by predictable rewards — while serotonin and dopamine concentration was increased by it. Noradrenaline concentration was almost not affected by predictable punishment — while serotonin fade rate was vastly increased by it, and serotonin concentration dropped. \\*
+
+Noradrenaline concentration was increased by every unpredictable event, proportionally to the level of the event's saliency. Dopamine and serotonin reaction to reward and punishment events did not depend on how unpredictable the events were.
+
+
+\bibliographystyle{splncs03}
+
+\bibliography{neucogar}
+
+\end{document}

@@ -1,0 +1,175 @@
+\documentclass[oribibl]{llncs}
+
+\usepackage{graphicx}
+\usepackage{caption}
+
+\begin{document}
+
+\title{The implementation of nor-adrenaline in the NeuCogAr cognitive architecture}
+
+
+% \author[inst2]{Max Talanov}
+% \ead{m\_talanov@it.kfu.ru}
+% \author[inst2,inst4]{Alexander Tchitchigin}
+% \ead{a\_tchichigin@it.kfu.ru, a.chichigin@innopolis.ru}
+%
+% \address[inst2]{Kazan Federal University, Russia.}
+% \address[inst4]{Innopolis University, Russia.}
+
+\author{
+Max Talanov\inst{1}
+\and Mariya Zagulova\inst{2}
+\and Boris Pinus\inst{3}
+\and Jordi Vallverdu\inst{4}
+}
+
+\institute{
+    Kazan Federal University, Russia,\\
+    \email{max.talanov@gmail.com}
+ \and
+    Kazan Federal University, Russia,\\
+    \email{lolmariya@gmail.com}
+\and
+    Kazan Federal University, Russia,\\
+    \email{bvpinus@gmail.com}
+\and
+    Universitat Autonoma de Barcelona, Catalonia,\\
+    \email{jordi.vallverdu@uab.cat}
+}
+
+%Where you can see the impact of novelty to the level of noradrenaline (NA),  first dopamine (DA) and serotonin (5HT) react on the pleasure and punishment stimulus but without novelty NA is 0 later when we rise the level of novelty on 17 ms you could see the bursts of NA (red) that reacts on novelty multiplied to reward and punishment.
+
+
+\maketitle
+
+\begin{abstract}
+
+  In this paper we present a novel approach to model and re-implement noradrenaline influence in
+  bio-plausible manner suitable for the modelling of emotions in a computational system. 
+  We have upgraded our previous biomimetic architecture NEUCOGAR capturing a key aspect of cognitive processes: novelty detection and its evaluation.
+  With our model, we can implement computationally a bioinspired cognitive architecture that uses neuromodulation as a mechanism to identify 
+  signals as well as to evaluate them according their novelty. A the same time, the generated values are stored into the system using the same neurotransmitters model.
+  \ldots{}
+
+\keywords{spiking neural networks, artificial emotions, affective computing}
+
+\end{abstract}
+
+
+\section{Introduction}\label{intro}
+A key aspect for any living system is the skill to recognize external or internal signals and to evaluate them\cite{signal}. 
+There is a related and second level of analysis: the detection of signals as novel ones\cite{novelty}\cite{novelty2}. 
+We can consider novelty as the discrepancy between what is known and what is discovered, and therefore it can elicit activity and exploration of the environment. Creativity is also deeply related to this process\cite{cognitionandcreativity}\cite{creativityscience}. 
+Despite of the fact that some good algorithmic attempts have been performed recently\cite{signal2}, 
+biomimetic approaches are not sufficiently explored. With out NEUCOGAR biomimetic architecture we implement 
+emotional mechanisms to manage processes like attention, resource allocation, goal setting, etc. 
+These mechanisms seems to be beneficial for informational systems in general (such as living entities) 
+and therefore for AI and robotic systems. Nevertheless, these phenomena tend to be "difficult" for computational as well as AI and robotics
+researchers, using classic approaches; on the other hand, actual cognitive systems tend to be 
+computationally costly, while our model seizes a reliable and available computing power. Thus, 
+we will use a human neurotransmitters-like model to implement a cognitive architecture for machine novelty-detection and evaluation.
+
+
+
+\ldots Basic  description
+To implement phenomena related to emotions we simulate neurobiological processes
+underlying emotional reactions, basically implementing three neurotransmitters which are active during brain cognitive processes:
+noradrenaline (NA), dopamine (DA) and serotonin (5HT). Must be remarked that it most studies assign a fundamental role of the
+dopamine system in determining the initial neural response to novelty, while this response is dampened by cholinergic transmission.
+Later responses to novelty emanating from the frontal cortex seem to be under influence of the cholinergic system \cite{neurotransmitters}.
+Our research procedure is the following one:
+
+In section \ref{the-problem} we substantiate the need for neurobiologically plausible
+emotional simulation and point out the mismatch between computational resources
+available to current robotic systems and what is required for neuronal simulation.
+In section \ref{my-idea} we introduce our concept how a robotic system execution
+can be separated into "day" and "night" phases in order to bridge the gap
+between a robotic system and supercomputer performing the simulation, following our previous research \cite{dream} .
+In section \ref{the-details} we introduce the notion of "bisimulation" to answer
+the questions of learning and mapping from realistic neural network to rules-based
+control system.
+%what do you have in mind when do you say BISIMULATION? This one? https://en.wikipedia.org/wiki/Bisimulation 
+% or another one?
+Section \ref{related-work} provides the information about the actual topics
+in the field of affecting computations, notable authors and research projects
+in this area.
+Finally we sum up the ideas presented in the paper and discuss the arose questions
+with attention to the steps we are going to take in order to resolve them in
+section \ref{conclusion}.
+
+
+\section{The Problem}\label{the-problem}
+
+\ldots
+
+\section{Our Idea}\label{my-idea}
+
+\ldots
+
+\section{Experiment}\label{the-details}
+
+\ldots Please add methods and experiments description here.
+
+\section{Related work}\label{related-work}
+
+\ldots Rewrite
+
+Since the last decade of 20th Century the interest to emotions and emotional representations in computational systems has been exponentially growing \cite{kismet,affectivecomputing,affectivecomputingchallanges,whatdoesitmeanforcomputer}. At the the same, the industrial applications that could relate humans and machines have required an increased investment into Human-Robot Interaction (henceforth, HRI) studies, covering a big array of topics\cite{nonverbalhri}\cite{believable}  \cite{affordance}, even ethical ones \cite{moral}\cite{operto}.
+This rise of activity was based on understanding of the role of emotions in human
+intelligence and consciousness that was indicated by several neuroscientists
+\cite{Damasio1998,Damasio1999,f5}. 
+
+Starting from the seminal ideas of bioinspired neural networks of Stephen Grossberg in the 1970's \cite{vallverdu2015}, next decade a new vision on computational emotional architectures was  investigated by Aaron Sloman. A few years later, affective computing was born thanks to the book by Rosalind Picard,\cite{picard1997}. Social robotics was the natural evoluton of these new trends, also at MIT by Cynthia Breazeal \cite{breazeal2002}.
+
+We could identify two main directions in the new research field of affective computing: emotion recognition and re-implementation of emotions in a computational system, mostly for HRI purposes. There are several cognitive architectures that are capable of the re-implementation of emotional phenomena in different extent, starting from SOAR \cite{laird2008}, to ACT-R \cite{harrison2002}, or modern BICA \cite{samsonovich2013}, mong others.
+The interest in implementation of emotional mechanisms is based on the fundamental role of emotional in basic cognitive processes: colouring in appraisal, decision making mechanisms, and emotional behaviour, as Damasio showed in \cite{damasio1994}. 
+
+Anyhow, our approach takes a step further on the road for neurobiologically plausible model of emotions \cite{bica2015neucogar}:Arbib and Fellous \cite{neuromodulatory, fellous2004} created the neurobiological background for the direction to neurobiologically inspired cognitive architectures;
+appraisal aspects were analyzed by Marsella and Gratch researches \cite{marsella2010, marsella2003, gratch2005}, as well as in Lowe and Ziemke works
+\cite{on_role_of_emotion, roleOfReinforcement}.
+
+As the neuropsychological basement for our cognitive architecture we used a tridimensional neurotransmitters model called "Cube of emotions" created by Hugo L\"{o}vheim \cite{lovheim2012}. It bridges the psychological and neurobiological phenomena in one relatively easy to implement computer models based on three-dimensional space of three basic neuromodulators: noradrenaline, serotonin,and dopamine.
+For the implementation of this model we used the realistic neural network simulator NEST \cite{Gewaltig:NEST}, recreating the neural structures of the mammalian brain in relation to the idea of novelty detection and evaluation. 
+
+As it was mentioned earlier in this paper, the processing of the simulation took 4 hours of supercomputer's processing time to calculate 1000 milliseconds\cite{kugurakova2016}.
+% we need to explain here the details of the simulation.
+
+\section{Conclusion}\label{conclusion}
+
+\ldots Rewrite
+
+In our article we have described a new approach for augmentation of autonomous robotic systems with mechanisms of emotional revision and
+feedback. We have modelled novelty recognition and evaluation skills that is useful for a broad range of implementations: cognitive architectures,
+self-learning models, HRI, or Human-Machine Interactions, among other possibilities.
+Despite of the good preliminary results, this research open some questions: input formats for realistic
+neural network, emotional revision thresholds and emotional equalizing (homeostasis),...
+%put here some technical problems more, at least 3 more, and avoid "and so on".
+
+On the one hand, different answers to these questions allow adapt our  model to a range of possible architectures of robots' control systems. On the other hand, we consider that the best way to implement our model would be a software framework with several pluggable adapters to accommodate the most popular choices for robots' "brains". The benefits of our bioinspired architecture is that allows the connection and management of modular systems with a main but nor dominant emotional architecture (like our NEUCOGAR model).
+
+% I'm not bure about the appropiateness of including a wish-list for next researches that 
+% is  not directly related to our current research: vacuum cleaner,....besides, it has not relationship with 
+% dopamine and novelty!!!!!! I've opted to mute the whole paragraph, but feel free to reconsider it.
+
+%So our next step is to implement a proof-of-concept of proposed
+%architectural scheme for some simple autonomous robotic system. We are
+%not going to start with a concierge android right away. Our current idea
+%is to develop some sort of robotic vacuum cleaner prototype that does not even clean
+%but can bump into humans or pets and receive emotional feedback, for
+%example because it is too noisy or because of incorrectly prioritized work tasks.
+%To simplify human feedback mechanism some remote control device could be used
+%for example with two buttons: for positive and negative feedback. Later we can
+%employ some audio-analysis system to infer emotional reaction from verbal commands
+%to robo-cleaner. Main research question here is to what extent these emotional
+%mechanisms can affect robot's behaviour? And we hope to establish a foundation
+%for desired software framework.
+
+\section{Acknowledgments}
+\label{sect:acknowledgments}
+This work was funded by the subsidy of the Russian Government to support the Program of competitive growth of Kazan Federal University among world class academic centers and universities. This paper has been partially funded by Spanish Government DGICYT: Creatividad, revoluciones e innovación en los procesos de cambio científico (FFI2014-52214-P).
+
+\bibliographystyle{splncs03}
+
+\bibliography{neucogar}
+
+\end{document}
