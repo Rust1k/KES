@@ -47,7 +47,7 @@
 %the structure of the names in the running heads and the author index.}%
 
 % the name(s) of the author(s) follow(s) next
-\author{Iskander Kareev, Rustem Salimov, Ruslan Gaisin, Darya Lavrova}
+\author{Darya Lavrova, Ruslan Gaisin, Iskander Kareev, Rustem Salimov}
 %
 \authorrunning{Author running}
 % (feature abused for this document to repeat the title also on left hand pages)
@@ -91,6 +91,7 @@ The investigation was done on the basis of dataset consisting of user's age $x_1
 
 To improve the robustness of the investigation and clearness of its results we have excluded the urls which were visited with less than 5 users. After the we had total of 526 user entries and 316000 entries on url visits.
 
+Put $U$ to be the set of all users, $S$ to be the set of all sites (urls). By $S(A)$ denote the set of all sites which were visited by at least one user $u \in A \subseteq U$. By $U(s)$ denote the set of all users which visited the site $s \in S$.
 
 
 
@@ -105,12 +106,32 @@ On this part of the investigation we have recoded the values in the following wa
 \item for values of \textit{gender}: \\ 
 	``\textit{Male}''  $\to$ 0, \quad  ``\textit{Female}'' $\to$ 1;
 \item for values of \textit{webapi\_agecateg}: \\ 
-	``\textit{0..17}''  $\to$ 1, \quad  ``\textit{18..24}''  $\to$ 2, \quad     ``\textit{25..34}''  $\to$ 3, \quad  ``\textit{35..44}''  $\to$ 4, \quad     \mbox{``\textit{45+}''  $\to$ 5};
+	``\textit{0..17}''  $\to$ 1, \quad  ``\textit{18..24}''  $\to$ 2, \quad     ``\textit{25..34}''  $\to$ 3, \quad  ``\textit{35..44}''  $\to$ 4, \quad     ``\textit{45+}''  $\to$ 5;
 \item for values of \textit{jposition}: \\ 
 	``\textit{employee}'' $\to$ 1, \quad  ``\textit{executive}'' $\to$ 1, \quad  ``\textit{jobless}'' $\to$ 0, \quad  ``\textit{minor}'' $\to$ 0, \quad  ``\textit{student}'' $\to$ 0.5.
 \end{itemize}
 
-This allows easy application of classic clusterisation algorithms based on  	Euclid distance. Here we apply the hierarchic algorithm. The results of clusterisation are highly dependant on the scale of the variables. That is why we bring in a vector of coefficients $\boldsymbol{w} = (w_1, w_2, w_3, w_4)$ for the attributes vector $\boldsymbol{x} = (x_1, x_2, x_3, x_4)$.
+This allows easy application of classic clusterisation algorithms based on  	Euclid distance. Here we apply the hierarchic algorithm. The results of clusterisation are highly dependant on the scale of the variables. That is why we bring in a vector of coefficients $\boldsymbol{w} = (w_1, w_2, w_3, w_4), \quad w_i \in [0, 1]$, so rescaled values are supplied to the clusterisation algorithm:
+\[
+	(w_1 x_1, w_2 x_2, w_3 x_3, w_4 x_4).
+\]
+
+Let us describe the considered way of choosing of coefficients $\boldsymbol{w}$ values.
+
+Suppose that after the clusterisation with some $\boldsymbol{w}$ the users $U$ are divided on $k$ sets $C_1, C_2, \dots, C_k$:
+\[
+	C_1 + C_2 + \dots + C_k = U.
+\]
+Let
+\[
+	r_{s,j} = \frac{\mathcal{N}(U(s) \cap C_j)}{\mathcal{N}(C_j)}.
+\]
+By means of $r_{s,j}$ we define an intersection measure for the clusterisation $C_1, C_2, \dots, C_k$:
+\[
+	I(\boldsymbol{w}) = \sum_s \Big( \sum_j r_{s,j} - \min_j \{r_{s,j}\} \Big).
+\]
+
+
 
 
 
