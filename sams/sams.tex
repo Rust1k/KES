@@ -22,6 +22,7 @@
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{bm}
+\usepackage{multirow}
 
 %\usepackage{url}
 %\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
@@ -111,10 +112,13 @@ On this part of the investigation we have recoded the values in the following wa
 	``\textit{employee}'' $\to$ 1, \quad  ``\textit{executive}'' $\to$ 1, \quad  ``\textit{jobless}'' $\to$ 0, \quad  ``\textit{minor}'' $\to$ 0, \quad  ``\textit{student}'' $\to$ 0.5.
 \end{itemize}
 
-This allows easy application of classic clusterisation algorithms based on  	Euclid distance. Here we apply the hierarchic algorithm. The results of clusterisation are highly dependant on the scale of the variables. That is why we bring in a vector of coefficients $\boldsymbol{w} = (w_1, w_2, w_3, w_4), \quad w_i \in [0, 1]$, so rescaled values are supplied to the clusterisation algorithm:
+This allows easy application of classic clusterisation algorithms based on Euclid distance. Here we apply the hierarchic algorithm. The results of clusterisation are highly dependant on the scale of the variables. That is why all the variables were scaled by their means and variances. We bring in a vector of coefficients $\boldsymbol{w} = (w_1, w_2, w_3, w_4), \quad w_i \in [0, 1]$, so rescaled values are supplied to the clusterisation algorithm of the form:
 \[
 	(w_1 x_1, w_2 x_2, w_3 x_3, w_4 x_4).
 \]
+
+
+\subsubsection{Sites separation measure.}
 
 Let us describe the considered way of choosing of coefficients $\boldsymbol{w}$ values.
 
@@ -128,11 +132,41 @@ Let
 \]
 By means of $r_{s,j}$ we define an intersection measure for the clusterisation $C_1, C_2, \dots, C_k$:
 \[
-	I(\boldsymbol{w}) = \sum_s \Big( \sum_j r_{s,j} - \min_j \{r_{s,j}\} \Big).
+	M_I(\boldsymbol{w}) = \sum_s \Big( \sum_j r_{s,j} - \min_j \{r_{s,j}\} \Big).
 \]
 
+For given number of clusters $k$ we choose the weights $\boldsymbol{w}$ as the ones for which $I(\boldsymbol{w})$ is minimized.
 
 
+
+\subsubsection{Clusters number.}
+
+Let $M_I(k) = \min_w M_I(k, \boldsymbol{w})$ be the intersection measure for clustering into $k$ clusters. Fig. illustrates the dependance of the number of unique sites in each group and the value of $M_I$ on value of $k$.
+
+\begin{figure}\label{N7Jti}
+
+\includegraphics[scale=0.6]{fig_uurls.pdf}\hfill
+\includegraphics[scale=0.6]{fig_meas.pdf}
+
+\caption{tru-la-la}
+\end{figure}
+
+After the AIC algorithm results we chose $k=6$ as the clusters number. For this the weights minimizing the interception measure $M_I$:
+\[
+	\boldsymbol{w} = (0.4, 0.4, 1.0, 0.4).
+\]
+On that values of weights we might suggest that the age (to which correspond the weight $1.0$) has the most has the most distinguishing effect on the visiting Internet sites.
+
+
+\subsubsection{The results.}
+
+
+
+\begin{table}\label{OWoti}
+	\includegraphics[width=\linewidth]{t1.pdf}
+	
+	\caption{asd}
+\end{table}
 
 
 
