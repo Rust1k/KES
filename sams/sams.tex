@@ -178,6 +178,32 @@ On that values of weights we might suggest that the age (to which correspond the
 
 
 
+\section{Dependency analysis of attributes and sites visits}
+
+One of the problems was the task of checking the independence of the attributes of the data and sites categories. For this purpose chi-squared test is usually used if explored indications are qualitative (see: \cite{wiki_chisq}). So we had to build a contingency tables and to make decisions about hypothesis of independence.
+
+Originally it was planned to analyze the relationships between the features of respondents and visits to the sites. However, for most sites this version of the analysis is not suitable due to the fact that they have a small number of visits; the same time for the sites with big number of visits(vk.com, google.com, and so on) to allocate a significant relationship is not possible. Therefore, it was decided to group the original sites into categories for further analyzing. The categories with large number of visits (more than 1000) were selected for the analysis, because for the categories with fewer visits the study is not applicable due to the limitations of test. For each user and each category has been allocated fact of the visit (variable that possesses values 0 or 1). After that contingency tables were built and by these tables the hypotheses of independence were tested with a significance level 0.05.
+
+It should be noted that two most popular categories: "Social networks", "Bots" - in which the number of visits by much more than in all other categories, depending on the features of the respondents users could not be found. That is a logical result, because websites of the most popular categories should be visited by users regardless of age, sex and other features. 
+
+A little bit strange result is that a visit to any one of the categories doesn’t depend on the gender of the respondents. Perhaps this is due to a not enough large sample size.
+
+Some interesting relations:
+
+\begin{itemize}
+	\item Between the \textbf{age} attribute and the category "\textbf{Newspapers}" (with a high significance level 0.0015) The result shows the benefit of young people aged 0 to 24 years of age and older people 45+ are much more likely not visit sites category "Newspapers".
+	\item Between the \textbf{marital status} and the category "\textbf{Dating}" (the significance level of 0.026). As expected, unmarried single people visit sites "dating" category.
+	\item Between the \textbf{age} attribute and category of websites "\textbf{Dating}" (with a high level of significance 0.009). Older people visit dating sites are more likely than younger ones.
+	\item Between the \textbf{age} attribute and the "Internet" category (with a high level of significance 0.01). It confirms the assumption that young people are more likely to visit sites with such a category.
+	\item Between the \textbf{age} attribute and category of "\textbf{Information Agency}" (with a significance level of 0.022). Here we see an unclear relation: young people under the age of 17 years, significantly more likely to visit sites with the category News agencies.
+	\item Between marital status and the category "\textbf{Shopping}" (a high level of importance of 0.0053). Married people, or irrelevant, significantly more likely to visit sites category Shopping, in turn, single people opposite.
+	\item Between the \textbf{age} attribute and the category of websites "Work" (the significance level of 0.013). Young people were significantly more interested in work sites category.
+	\item Between the \textbf{age} attribute and the category "\textbf{Universal Encyclopedia}" (high significance level 0.0023). Young people between 18 and 24 years old visit sites og the category "Universal Encyclopedia" rare than younger participants (0..17) and slightly older participants (24..34).
+	\item Between the \textbf{workplace} and the category "\textbf{Universal Encyclopedia}" (high significance level 0.0082). For this feature the obvious relation that students use the sites of this category more often than other groups figured out again. Complete workers also use sites of this category.
+	\item Between the \textbf{age} attribute and the category "\textbf{Humor}" (significance level 0.04). For this category we get the obvious connection that young people aged 18 to 34 years visited sites category humor more often.
+	\item Between the \textbf{labor} attribute and category of websites "\textbf{Humor}" (significance level 0.03). The connection that students visit sites in this category more often is highlighted here.
+\end{itemize}
+
 
 
 \subsubsection*{Acknowledgments.} The heading should be treated as a
@@ -185,27 +211,7 @@ subsubsection heading and should not be assigned a number.
 
 \begin{thebibliography}{4}
 
-\bibitem{jour} Smith, T.F., Waterman, M.S.: Identification of Common Molecular
-Subsequences. J. Mol. Biol. 147, 195--197 (1981)
-
-\bibitem{lncschap} May, P., Ehrlich, H.C., Steinke, T.: ZIB Structure Prediction Pipeline:
-Composing a Complex Biological Workflow through Web Services. In: Nagel,
-W.E., Walter, W.V., Lehner, W. (eds.) Euro-Par 2006. LNCS, vol. 4128,
-pp. 1148--1158. Springer, Heidelberg (2006)
-
-\bibitem{book} Foster, I., Kesselman, C.: The Grid: Blueprint for a New Computing
-Infrastructure. Morgan Kaufmann, San Francisco (1999)
-
-\bibitem{proceeding1} Czajkowski, K., Fitzgerald, S., Foster, I., Kesselman, C.: Grid
-Information Services for Distributed Resource Sharing. In: 10th IEEE
-International Symposium on High Performance Distributed Computing, pp.
-181--184. IEEE Press, New York (2001)
-
-\bibitem{proceeding2} Foster, I., Kesselman, C., Nick, J., Tuecke, S.: The Physiology of the
-Grid: an Open Grid Services Architecture for Distributed Systems
-Integration. Technical report, Global Grid Forum (2002)
-
-\bibitem{url} National Center for Biotechnology Information, \url{http://www.ncbi.nlm.nih.gov}
+\bibitem{wiki_chisq} Wikipedia: Chi-Square Test  \url{https://en.wikipedia.org/wiki/Chi-squared\_test}
 
 \end{thebibliography}
 
