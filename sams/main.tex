@@ -74,7 +74,7 @@
 \maketitle
 
 \begin{abstract}
-In our research we have done a statistical analysis of relations between Internet users demographic attributes and their Internet activity. The information on web activity and social attributes of the users were accumulated via ``Sazan SRR'' mobile application during a series of social events. The main characteristics which were obtained are marital status, gender, age category and occupational status of the users (based on their responds) and the list of websites they visited during the events. The statistical analysis consisted of two complementary parts. The first part is the clusterization by weighted demographic attributes. The weights are selected in such way that the resulting clusters are well separated in terms of the websites the relevant users visited. The second part is the testing for statistical dependencies between demographic attributes and the preferences of the website categories. The study revealed some statistical connections, namely, that the age of the responders has the strongest influence over their website preferences.
+In our research we have carried out a statistical analysis of relations between Internet users demographic attributes and their Internet activity. The information on web activity and social attributes of the users were accumulated via ``Sazan SRR'' mobile application during a series of social events. The main characteristics which were obtained are marital status, gender, age category and occupational status of the users (based on their responds) and the list of websites they visited during the events. The statistical analysis consisted of two complementary parts. The first part is the clusterization by weighted demographic attributes. The weights are selected in such way that the resulting clusters are well separated in terms of the websites the relevant users visited. The second part is the testing for statistical dependencies between demographic attributes and the preferences of the website categories. The study revealed some statistical connections, namely, that the age of the responders has the strongest influence over their website preferences.
 
 
 \keywords{data mining, clusterization, clusters interception measure, demographic data, independence test}
@@ -83,8 +83,8 @@ In our research we have done a statistical analysis of relations between Interne
 
 \section{Introduction}
 
-The problems of mining demographic and social activity data are of continuous interest by many academical and industrial researchers. Since the results of such analysis gives us possibilities to reveal and predict the needs, behavior and habits of people, they
-found wide application in marketing, politics, city management and so on. In our study we produce such statistical analysis for a demographic and web activity data of some mobile Internet users. The data was collected through special software ``Sazan SRR'' during a series of social events. See \cite{sim-1,sim-2,sim-3,sim-4,sim-5} for similar studies.
+The problems of mining demographic and social activity data are of continuous interest by many academical and industrial researchers. Since the results of such analysis give us possibilities to reveal and predict the needs, behavior and habits of people, they
+find wide application in marketing, politics, city management and so on. In our study we produce such statistical analysis for a demographic and web activity data of some mobile Internet users. The data were collected through special software ``Sazan SRR'' during a series of social events. See \cite{sim-1,sim-2,sim-3,sim-4,sim-5} for similar studies.
 
 The statistical analysis consisted of two mutually complementary studies. The first one is the clusterization of the users based on their weighted demographic attributes (marital status, gender, age category and occupational status). The weights are selected in such way that the obtained clusters are well-distinguishable, i.e. users the from different clusters visited different websites. This allows to identify the statistical connection between the demographic groups and the websites in a more apparent way.
 
@@ -121,7 +121,7 @@ After pre-processing the sample data comprised of 316000 URLs of websites and 52
 
 \section{Clusterisation of users by demographic attributes}
 
-The goal was to provide the clusterisation of the set of users on several groups based on their demographic attributes (like age, occupational status and so on) and the sites they visited. The expectation was to get an interpretable insight on the connection between users' social status and their preferences on Internet sites. 
+The goal was to provide the clusterization of the set of users on several groups based on their demographic attributes (like age, occupational status and so on) and the sites they visited. The expectation was to get an interpretable insight on the connection between users' social status and their preferences on Internet sites. 
 
 
 
@@ -134,7 +134,7 @@ Let $U$ be the set of all users in the dataset and $S$ be the set of all sites (
 
 The investigation was done using the following demographic attributes: marital status ($a_1$), gender ($a_2$), age category (denoted as $a_3$) and occupational status ($a_4$). So to each $u \in U$ a vector of attributes $\boldsymbol{a} = (a_1, a_2, a_3, a_4)$ is assigned.
 
-For simplicity of application of common clusterisation algorithms and to preserve the natural order of the values, all of the demographic attributes were recoded from categorical to numerical format in the following way:
+For simplicity of application of common clusterization algorithms and to preserve the natural order of the values, all of the demographic attributes were recoded from categorical to numerical format in the following way:
 
 
 \begin{itemize}
@@ -154,16 +154,16 @@ For simplicity of application of common clusterisation algorithms and to preserv
 	``\textit{employee}'' $\to$ 1, \qquad  ``\textit{executive}'' $\to$ 1, \qquad  ``\textit{unemployed}'' $\to$ 0, \\  ``\textit{minor}'' $\to$ 0, \qquad  ``\textit{student}'' $\to$ 0.5.
 \end{itemize}
 
-The clusterisation of $U$ is done by the values of attributes $(a_1, a_2, a_3, a_4)$ using complete linkage hierarchical clustering \cite{hclust} with Euclidean distance. Let us note that the clusterisation were done using \textit{hclust} method of \textit{R} statistical package. Since those algorithm are sensitive to the scale of the data, the attributes $a_1$, $a_2$, $a_3$, $a_4$ are rescaled to have zero mean and unit variance throughtout the dataset. We denote the values of the attributes after recoding and rescaling by $\boldsymbol{x} = (x_1, x_2, x_3, x_4)$.
+The clusterization of $U$ is done by the values of attributes $(a_1, a_2, a_3, a_4)$ using complete linkage hierarchical clustering \cite{hclust} with Euclidean distance. Let us note that the clusterization were done using \textit{hclust} method of \textit{R} statistical package. Since those algorithm are sensitive to the scale of the data, the attributes $a_1$, $a_2$, $a_3$, $a_4$ are rescaled to have zero mean and unit variance throughout the dataset. We denote the values of the attributes after recoding and rescaling by $\boldsymbol{x} = (x_1, x_2, x_3, x_4)$.
 
-Due to aforementioned sensitivity of the clusterisation algorithm to the scale of input variables, we can regulate the importance of each of the attributes by bringing in weights $\boldsymbol{w} = (w_1, w_2, w_3, w_4)$ where \quad $w_i \in [0, 1], \quad i = 1,2,3,4$. Thus the clusterisation is done on the values of vector $(w_1 x_1, w_2 x_2, w_3 x_3, w_4 x_4)$.
+Due to aforementioned sensitivity of the clusterization algorithm to the scale of input variables, we can regulate the importance of each of the attributes by bringing in weights $\boldsymbol{w} = (w_1, w_2, w_3, w_4)$ where \quad $w_i \in [0, 1], \quad i = 1,2,3,4$. Thus the clusterization is done on the values of vector $(w_1 x_1, w_2 x_2, w_3 x_3, w_4 x_4)$.
 
-Let $k$ be the number of clusters on which $U$ supposed to be clusterised. By $\mathfrak{C}(\boldsymbol{w}, k)$ denote the resulting clusterisation for given $k$ and weights $\boldsymbol{w}$, so
+Let $k$ be the number of clusters on which $U$ supposed to be clusterised. By $\mathfrak{C}(\boldsymbol{w}, k)$ denote the resulting clusterization for given $k$ and weights $\boldsymbol{w}$, so
 \[
 	\mathfrak{C}(\boldsymbol{w}, k) = \{C_1, C_2, \dots, C_k\} \  \colon  \quad  C_1 \cup C_2 \cup \dots \cup C_k = U.
 \]
 
-Let $S_i = S(C_i)$ --- the image of users clustarisation $\mathfrak{C}(\boldsymbol{w}, k)$ to the set of all sites $S$. We want to pick values of weights in such way that the sets $S_1, ..., S_k$ are well separated and there is no much intersection between them, i.e. our clusterisation results in users clusters which are well distinguishable in terms of the sites users visit. We describe our methods for that in the following.
+Let $S_i = S(C_i)$ --- the image of users clustarisation $\mathfrak{C}(\boldsymbol{w}, k)$ to the set of all sites $S$. We want to pick values of weights in such way that the sets $S_1, ..., S_k$ are well separated and there is no much intersection between them, i.e. our clusterization results in users clusters which are well distinguishable in terms of the sites users visit. We describe our methods for that in the following.
 
 
 
@@ -175,7 +175,7 @@ Suppose the number of clusters $k$ is fixed. Let us describe the algorithm for s
 \]
 where $s \in S$, $C_j \in \mathfrak{C}(\boldsymbol{w}, k) \quad (1 \leq j \leq k ),$ and $\mathcal{N}$ is the number of elements in its argument.
 
-By means of $r_{s,j}$ we define an intersection measure for the clusterisation $\mathfrak{C}(\boldsymbol{w}, k)$:
+By means of $r_{s,j}$ we define an intersection measure for the clusterization $\mathfrak{C}(\boldsymbol{w}, k)$:
 \[
 	M_I = \sum_{s \in S} \Big( \sum_{j=1}^{k} r_{s,j} - \min_{j\colon 1 \leq j \leq k} r_{s,j} \Big).
 \]
@@ -239,44 +239,52 @@ Let us provide a brief description of some of the obtained clusters:
 	\item $C_6$ is formed by aged unemployed people with a lot of spare time, as it seems. They are interested in wide variety of website categories, including weather, photo hosts, mass media, home and so on.
 \end{itemize}
 
-Let us note that the demographic data on the users were gathered by means of online interview without any validation. For instance, $C_3$ almost completely consists of married people who are under 17 years old which is unlikely to be true.
+Let us note that the demographic data on the users were gathered by means of online interview without any validation. For instance, $C_3$ almost completely consists of married people who are under 17 years old which is unlikely to be true. Since these cases cannot be treated as just outliers due to high number, we don't address this issue here.
 
 
-\section{Dependency analysis between demographic attributes of a users and sites they visited}
+\section{Analysis for dependencies between the demographic attributes and the websites preferences}
 
 
 
-Another goal of our research was checking the independence of the demographic attributes and website categories preferences (the mapping of sites to the categories were done according to Yandex database \cite{yandex}). For this purpose chi-squared test is usually used if explored indications are qualitative. So contingency tables were built and we were able to make a decision about hypothesis of independence (with the significance level $0.05$). To provide better statistical significance, only the categories with more than 1000 visits from distinct users were considered.
+Another goal of our research was testing for the dependencies between the demographic attributes and the website category preferences (the mapping of sites urls to the categories were done according to Yandex database \cite{yandex}). The chi-squared independence test was used since the tested characteristics are qualitative. For every pair of the demographic attribute and website category the contingency tables were built and the independence test was performed with the significance level of $0.05$. To provide better statistical significance, only the categories with more than 1000 visits from distinct users were considered.
 
-The two most popular categories are ``Social networks'' and ``Search engines''. It should be noted that there are much more visits to these categories than to any other. So the dependencies for these categories could not be detected. This result is evident, as the most popular sites should be visited by all users irrespective of their age, sex and other features. 
+Let us note that the categories ``Social networks'' and ``Search engines'' have by far more visits by distinct users than any other category. So the dependencies for these categories could not be detected. This result is evident, as the most popular sites should be visited by all users irrespective of their age, sex and other features. 
 
-Another result is that a visit of any category doesn’t depend on the gender of a respondent. Perhaps this fact is connected to insufficiently large sample size.
+Another result is that the likelihood of that an user visits a category doesn't depend on the gender. Perhaps this finding is due to the insufficient sample size.
 
-Some identified relations:
+Some identified dependencies:
 
 \begin{itemize}
-	\item Between the \textbf{age} attribute and the category ``\textbf{Newspapers}'' (with a high significance level \textbf{0.0015}). People aged 0 to 24 years and older than 45 years are much more likely not visit sites of category ``Newspapers''.
-	\item Between the \textbf{marital status} and the category ``\textbf{Dating}'' (the significance level of \textbf{0.026}). The unmarried single persons visit sites ``Dating'' category more often.
-	\item Between the \textbf{age} attribute and category of websites ``\textbf{Dating}'' (with a high level of significance \textbf{0.009}). Older people visit dating sites more often than younger.
-	\item Between the \textbf{age} attribute and the ``Internet'' category (with a high level of significance \textbf{0.01}). It confirms the assumption that young people are more likely to visit sites of this category.
-	\item Between the \textbf{age} attribute and category of ``\textbf{Information Agency}'' (with a significance level of \textbf{0.022}). Here it can be seen an unclear relation: young people under 17 years of age significantly more often visit sites of the category News agencies.
-	\item Between marital status and the category ``\textbf{Shopping}'' (a high level of importance of \textbf{0.0053}). Single people significantly more rarely visit sites of category Shopping.
-	\item Between the \textbf{age} attribute and the category of websites ``\textbf{Job}'' (the significance level of \textbf{0.013}). Young people are significantly more interested in job search sites.
+	\item Between the \textbf{age} attribute and the category ``\textbf{Newspapers}'' (with a high significance level \textbf{0.0015}). People aged from 0 to 24 years and older than 45 years are much more likely to not visit websites of category ``Newspapers''.
+
+	\item Between the \textbf{marital status} and the category ``\textbf{Dating}'' (the significance level of \textbf{0.026}). The unmarried single persons visit dating websites more often.
+	
+	\item Between the \textbf{age} attribute and the category ``\textbf{Dating}'' (with a high level of significance \textbf{0.009}). Older people visit dating sites more often than younger.
+	
+	\item Between the \textbf{age} attribute and the category ``Internet'' (with a high level of significance \textbf{0.01}). It confirms the assumption that young people are more likely to visit websites related to IT.
+	
+	\item Between the \textbf{age} attribute and the category ``\textbf{Information Agency}'' (with a significance level of \textbf{0.022}). Here it can be seen an unclear relation: young people under 17 years of age significantly more often visit sites of the category News agencies.
+	
+	\item Between the \textbf{marital status} and the category ``\textbf{Shopping}'' (a high level of importance of \textbf{0.0053}). Single people rarely visit this kind of websites.
+	
+	\item Between the \textbf{age} attribute and the category ``\textbf{Job}'' (the significance level of \textbf{0.013}). Young people are significantly more interested in the job-search websites.
+	
 	\item Between the \textbf{age} attribute and the category ``\textbf{Universal Encyclopedia}'' (high significance level \textbf{0.0023}). 
 	Young people between 18 and 24 years old visit sites of the category ``Universal Encyclopedia'' more frequently than people of other ages.
-	\item Between the \textbf{workplace} and the category ``\textbf{Universal Encyclopedia}'' (high significance level \textbf{0.0082}). For this demographic attribute the obvious relation is recognized. Students use the sites of this category more often than other groups. Full-time engineers also use sites of this category more frequently.
-	\item Between the \textbf{age} attribute and the category ``\textbf{Humor}'' (significance level \textbf{0.04}). The obvious connection is observed. Young people aged 18 to 34 years visit sites of this category more often.
-	\item Between the \textbf{labor} attribute and category of websites ``\textbf{Humor}'' (significance level \textbf{0.03}). As a result we obtain the fact that students frequent sites of this category.
+	
+	\item Between the \textbf{workplace} and the category ``\textbf{Universal Encyclopedia}'' (high significance level \textbf{0.0082}). For this demographic attribute the natural relation is recognized. Students use the sites of this category more often than the other groups. Full-time engineers also use sites of this category more frequently.
+	\item Between the \textbf{age} attribute and the category ``\textbf{Humor}'' (significance level \textbf{0.04}). The natural connection is observed. Young people aged from 18 to 34 years visit sites of this category more often.
+	\item Between the \textbf{labor} attribute and category ``\textbf{Humor}'' (significance level \textbf{0.03}). Students like the websites of this category.
 \end{itemize}
 
 
 \section{Conclusion}
 
 
-We have done statistical analysis on some demographic and web activity data. The statistical investigation was performed using clusterization of weighted demographic data with some special way of weights choosing, and tests for the dependence between demographic attributes and web activity of the users. The considered methods allowed to reveal some interesting statistical connections and features of the dataset. It is important to note, that both of the methods showed somewhat mutually supportive results, namely, they both discovered high influence of age to the websites preferences.
+We have done statistical analysis on some demographic and web activity data. The first part of the statistical investigation was performed using clusterization of weighted demographic data with some special way of weights selecting. The second part consisted in pair-wise testing for the independence between demographic attributes and website preferences of the users. The considered methods allowed to reveal some interesting statistical connections and features of the dataset. It is important to note, that both methods showed somewhat mutually supportive results, namely, they both discovered high influence of age to the websites preferences. This might indicate on the effectiveness of the considered methods.
 
 
-\subsubsection*{Acknowledgments.} This work was funded by the subsidy allocated to Kazan Federal University for the state assignment in the sphere of scientific activities. The work is performed according to the Russian Government Program of Competitive Growth of Kazan Federal University.
+\subsubsection*{Acknowledgments.} This work was funded by the subsidy allocated to Kazan Federal University for the state assignment in the sphere of scientific activities. 
 
 \begin{thebibliography}{4}
 
